@@ -6,6 +6,9 @@ import sharp from "sharp";
 
 import { PUBLIC_PATH, UPLOAD_PATH } from "@web-speed-hackathon-2026/server/src/paths";
 
+sharp.cache(false);
+sharp.concurrency(1);
+
 export const imageResizeRouter = Router();
 
 const ALLOWED_WIDTHS = [40, 80, 192, 245, 490, 494, 960, 1200];
@@ -17,8 +20,21 @@ function clampWidth(w: number): number {
   return ALLOWED_WIDTHS[ALLOWED_WIDTHS.length - 1]!;
 }
 
-// In-memory cache for resized images
+// In-memory cache for resized images (LRU-like, capped at 100 entries)
+const MAX_CACHE_SIZE = 100;
 const cache = new Map<string, Buffer>();
+
+function cacheSet(key: string, value: Buffer) {
+  if (cache.size >= MAX_CACHE_SIZE) {
+    const firstKey = cache.keys().next().value;
+    if (firstKey) cache.delete(firstKey);
+  }
+  cache.set(key, value);
+}
+
+export function clearImageCache() {
+  cache.clear();
+}
 
 imageResizeRouter.get("/images/{*path}", async (req, res, next) => {
   const wParam = req.query["w"];
@@ -58,7 +74,7 @@ imageResizeRouter.get("/images/{*path}", async (req, res, next) => {
       .avif({ quality: 50 })
       .toBuffer();
 
-    cache.set(cacheKey, resized);
+    cacheSet(cacheKey, resized);
 
     res.setHeader("Content-Type", "image/avif");
     res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
