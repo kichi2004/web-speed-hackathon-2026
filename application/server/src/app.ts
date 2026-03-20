@@ -1,22 +1,24 @@
-import bodyParser from "body-parser";
-import compression from "compression";
-import Express from "express";
-import morgan from "morgan";
+import bodyParser from 'body-parser'
+import compression from 'compression'
+import Express from 'express'
+import morgan from 'morgan'
 
-import { apiRouter } from "@web-speed-hackathon-2026/server/src/routes/api";
-import { imageResizeRouter } from "@web-speed-hackathon-2026/server/src/routes/image_resize";
-import { staticRouter } from "@web-speed-hackathon-2026/server/src/routes/static";
-import { sessionMiddleware } from "@web-speed-hackathon-2026/server/src/session";
+import { apiRouter } from '@web-speed-hackathon-2026/server/src/routes/api'
+import { imageResizeRouter } from '@web-speed-hackathon-2026/server/src/routes/image_resize'
+import { staticRouter } from '@web-speed-hackathon-2026/server/src/routes/static'
+import { sessionMiddleware } from '@web-speed-hackathon-2026/server/src/session'
 
 export const app = Express();
 
 app.set("trust proxy", true);
 app.use(compression());
 
-if (process.env['NODE_ENV'] === 'development') {
-  console.log('Development mode');
-  app.use(morgan("dev"));
-}
+const isDev = process.env["NODE_ENV"] === "development";
+app.use(
+  morgan(isDev ? "dev" : "combined", {
+    skip: (_, res) => (isDev ? false : res.statusCode < 400),
+  }),
+);
 app.use(sessionMiddleware);
 app.use(bodyParser.json());
 app.use(bodyParser.raw({ limit: "10mb" }));
