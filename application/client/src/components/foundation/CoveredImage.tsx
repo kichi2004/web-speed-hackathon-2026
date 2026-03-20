@@ -1,9 +1,8 @@
 import classNames from "classnames";
-import { MouseEvent, RefCallback, useCallback, useId, useMemo, useState } from "react";
+import { MouseEvent, RefCallback, useCallback, useEffect, useId, useMemo, useState } from "react";
 
 import { Button } from "@web-speed-hackathon-2026/client/src/components/foundation/Button";
 import { Modal } from "@web-speed-hackathon-2026/client/src/components/modal/Modal";
-import { useFetch } from "@web-speed-hackathon-2026/client/src/hooks/use_fetch";
 import { fetchJSON } from "@web-speed-hackathon-2026/client/src/utils/fetchers";
 
 interface Props {
@@ -29,7 +28,14 @@ export const CoveredImage = ({ src, loading = "lazy" }: Props) => {
     ev.stopPropagation();
   }, []);
 
-  const { data: altTexts } = useFetch("/images/alt_texts.json", fetchAltTexts);
+  const [altTexts, setAltTexts] = useState<Record<string, string> | null>(altTextsCache);
+
+  useEffect(() => {
+    if (altTexts != null) return;
+    fetchAltTexts("/images/alt_texts.json").then((data) => {
+      setAltTexts(data);
+    });
+  }, []);
 
   const alt = useMemo(() => {
     if (altTexts == null) return "";
