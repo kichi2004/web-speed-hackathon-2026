@@ -4,6 +4,7 @@ import path from "path";
 import { Router } from "express";
 import { fileTypeFromBuffer } from "file-type";
 import httpErrors from "http-errors";
+import sharp from "sharp";
 import { v4 as uuidv4 } from "uuid";
 
 import { UPLOAD_PATH } from "@web-speed-hackathon-2026/server/src/paths";
@@ -30,7 +31,8 @@ imageRouter.post("/images", async (req, res) => {
 
   const filePath = path.resolve(UPLOAD_PATH, `./images/${imageId}.${SAVE_EXTENSION}`);
   await fs.mkdir(path.resolve(UPLOAD_PATH, "images"), { recursive: true });
-  await fs.writeFile(filePath, req.body);
+  const webpBuffer = await sharp(req.body).webp({ quality: 80 }).toBuffer();
+  await fs.writeFile(filePath, webpBuffer);
 
   return res.status(200).type("application/json").send({ id: imageId });
 });
