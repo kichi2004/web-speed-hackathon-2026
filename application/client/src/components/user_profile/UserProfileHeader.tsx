@@ -1,5 +1,6 @@
 import { FastAverageColor } from "fast-average-color";
-import moment from "moment";
+import { format, formatISO } from "date-fns";
+import { ja } from "date-fns/locale";
 import { ReactEventHandler, useCallback, useState } from "react";
 
 import { FontAwesomeIcon } from "@web-speed-hackathon-2026/client/src/components/foundation/FontAwesomeIcon";
@@ -13,8 +14,7 @@ export const UserProfileHeader = ({ user }: Props) => {
   const [averageColor, setAverageColor] = useState<string | null>(null);
 
   // 画像の平均色を取得します
-  /** @type {React.ReactEventHandler<HTMLImageElement>} */
-  const handleLoadImage = useCallback<ReactEventHandler<HTMLImageElement>>((ev) => {
+  const handleLoadImage: React.ReactEventHandler<HTMLImageElement> = useCallback<ReactEventHandler<HTMLImageElement>>((ev) => {
     const fac = new FastAverageColor();
     const { rgb } = fac.getColor(ev.currentTarget, { mode: "precision" });
     setAverageColor(rgb);
@@ -43,8 +43,8 @@ export const UserProfileHeader = ({ user }: Props) => {
             <FontAwesomeIcon iconType="calendar-alt" styleType="regular" />
           </span>
           <span>
-            <time dateTime={moment(user.createdAt).toISOString()}>
-              {moment(user.createdAt).locale("ja").format("LL")}
+            <time dateTime={formatISO(user.createdAt)}>
+              {format(user.createdAt, "PPP", { locale: ja })}
             </time>
             からサービスを利用しています
           </span>

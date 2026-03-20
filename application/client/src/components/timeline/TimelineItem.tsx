@@ -1,4 +1,3 @@
-import moment from "moment";
 import { MouseEventHandler, useCallback } from "react";
 import { Link, useNavigate } from "react-router";
 
@@ -7,6 +6,8 @@ import { MovieArea } from "@web-speed-hackathon-2026/client/src/components/post/
 import { SoundArea } from "@web-speed-hackathon-2026/client/src/components/post/SoundArea";
 import { TranslatableText } from "@web-speed-hackathon-2026/client/src/components/post/TranslatableText";
 import { getProfileImagePath } from "@web-speed-hackathon-2026/client/src/utils/get_path";
+import { format, formatISO } from 'date-fns'
+import { ja } from 'date-fns/locale'
 
 const isClickedAnchorOrButton = (target: EventTarget | null, currentTarget: Element): boolean => {
   while (target !== null && target instanceof Element) {
@@ -22,10 +23,6 @@ const isClickedAnchorOrButton = (target: EventTarget | null, currentTarget: Elem
   return false;
 };
 
-/**
- * @typedef {object} Props
- * @property {Models.Post} post
- */
 interface Props {
   post: Models.Post;
 }
@@ -76,8 +73,8 @@ export const TimelineItem = ({ post }: Props) => {
             </Link>
             <span className="text-cax-text-muted pr-1">-</span>
             <Link className="text-cax-text-muted pr-1 hover:underline" to={`/posts/${post.id}`}>
-              <time dateTime={moment(post.createdAt).toISOString()}>
-                {moment(post.createdAt).locale("ja").format("LL")}
+              <time dateTime={formatISO(post.createdAt)}>
+                {format(post.createdAt, "PPP", { locale: ja })}
               </time>
             </Link>
           </p>
