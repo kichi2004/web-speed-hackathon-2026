@@ -31,9 +31,6 @@ const config = {
   devtool: isProd ? false : "cheap-module-source-map",
   entry: {
     main: [
-      "core-js",
-      "regenerator-runtime/runtime",
-      "jquery-binarytransport",
       path.resolve(SRC_PATH, "./index.css"),
       path.resolve(SRC_PATH, "./buildinfo.ts"),
       path.resolve(SRC_PATH, "./index.tsx"),
@@ -57,7 +54,10 @@ const config = {
       },
       {
         resourceQuery: /binary/,
-        type: "asset/bytes",
+        type: "asset/resource",
+        generator: {
+          filename: "assets/[name].[contenthash][ext]",
+        },
       },
     ],
   },
@@ -71,7 +71,6 @@ const config = {
   plugins: [
     new webpack.ProvidePlugin({
       $: "jquery",
-      AudioContext: ["standardized-audio-context", "AudioContext"],
       Buffer: ["buffer", "Buffer"],
       "window.jQuery": "jquery",
     }),
@@ -96,7 +95,7 @@ const config = {
       inject: true,
       template: path.resolve(SRC_PATH, "./index.html"),
     }),
-    new BundleAnalyzerPlugin(),
+    new BundleAnalyzerPlugin({ analyzerMode: process.env.ANALYZE ? "server" : "disabled" }),
   ],
   resolve: {
     extensions: [".tsx", ".ts", ".mjs", ".cjs", ".jsx", ".js"],
