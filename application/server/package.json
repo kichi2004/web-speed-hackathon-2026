@@ -27,6 +27,7 @@
     "http-errors": "2.0.0",
     "kuromoji": "0.1.2",
     "music-metadata": "11.10.3",
+    "morgan": "1.10.1",
     "negaposi-analyzer-ja": "1.0.1",
     "sequelize": "6.37.7",
     "serve-static": "2.2.0",
@@ -51,7 +52,6 @@
     "@types/serve-static": "1.15.9",
     "@types/sharp": "0.32.0",
     "@types/ws": "8.18.1",
-    "morgan": "1.10.1",
     "typescript": "5.9.3"
   },
   "engines": {
