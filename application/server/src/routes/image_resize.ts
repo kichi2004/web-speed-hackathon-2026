@@ -8,7 +8,7 @@ import { PUBLIC_PATH, UPLOAD_PATH } from "@web-speed-hackathon-2026/server/src/p
 
 export const imageResizeRouter = Router();
 
-const ALLOWED_WIDTHS = [48, 96, 192, 320, 640, 960, 1200];
+const ALLOWED_WIDTHS = [40, 80, 192, 245, 490, 494, 960, 1200];
 
 function clampWidth(w: number): number {
   for (const allowed of ALLOWED_WIDTHS) {
@@ -20,14 +20,16 @@ function clampWidth(w: number): number {
 // In-memory cache for resized images
 const cache = new Map<string, Buffer>();
 
-imageResizeRouter.get("/images/:path", async (req, res, next) => {
+imageResizeRouter.get("/images/{*path}", async (req, res, next) => {
   const wParam = req.query["w"];
   if (wParam == null) return next();
 
   const width = clampWidth(Number(wParam));
   if (Number.isNaN(width)) return next();
 
-  const imagePath = req.params["path"];
+  const imagePathSegs = (req.params as Record<string, string[]>)["path"];
+  const imagePath = imagePathSegs?.join("/") ?? "";
+  if (imagePath == null) return next();
   const cacheKey = `${imagePath}:${width}`;
 
   const cached = cache.get(cacheKey);
