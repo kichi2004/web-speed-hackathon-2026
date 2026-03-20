@@ -57,6 +57,7 @@ export const PausableMovie = ({ src }: Props) => {
           playsInline
           className="w-full"
           onCanPlay={handleCanPlay}
+          preload="metadata"
           src={src}
         />
         <div
