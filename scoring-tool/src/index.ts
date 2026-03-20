@@ -2,6 +2,7 @@ import * as github from "@actions/github";
 import { defineCommand, runMain } from "citty";
 import { stripIndents } from "common-tags";
 import debug from "debug";
+import _ from "lodash";
 import { inject } from "regexparam";
 
 import { calculate, TARGET_NAME_LIST } from "./calculate";
@@ -11,7 +12,6 @@ import type { MetricKey, Result, TargetCategory } from "./result";
 import { CLIWriter } from "./writer/cli_writer";
 import { EmptyWriter } from "./writer/empty_writer";
 import { GitHubWriter } from "./writer/github_writer";
-import { sum, round } from 'lodash'
 
 const SCORE_SECTION_LIST: Array<{
   category: TargetCategory;
@@ -56,11 +56,11 @@ function formatMetricScore(result: Result, metricKey: MetricKey): string {
 }
 
 function formatScoreSection({
-  metrics,
-  results,
-  totalMaxScore,
-  title,
-}: {
+                              metrics,
+                              results,
+                              totalMaxScore,
+                              title,
+                            }: {
   metrics: Array<{ key: MetricKey; label: string; maxScore: number }>;
   results: Result[];
   totalMaxScore: number;
@@ -144,17 +144,17 @@ const command = defineCommand({
     name: "@web-speed-hackathon-2026/scoring-tool",
   },
   async run({
-    args: {
-      applicationUrl,
-      targetName,
-      competitionEndAt = null,
-      competitionStartAt = null,
-      dashboardServerToken = null,
-      dashboardServerUrl = null,
-      participationGitHubId = null,
-      participationKind = null,
-    },
-  }) {
+              args: {
+                applicationUrl,
+                targetName,
+                competitionEndAt = null,
+                competitionStartAt = null,
+                dashboardServerToken = null,
+                dashboardServerUrl = null,
+                participationGitHubId = null,
+                participationKind = null,
+              },
+            }) {
     async function sendScoreToDashboard(score: number): Promise<{ rank: number | null }> {
       if (!dashboardServerUrl || !dashboardServerToken || !participationGitHubId) {
         return { rank: null };
@@ -204,10 +204,10 @@ const command = defineCommand({
     const requestedDate =
       process.env["GITHUB_ACTIONS"] != null
         ? new Date(
-            (github.context.eventName === "issues"
-              ? github.context.payload.issue!["created_at"]
-              : github.context.payload.comment!["created_at"]) as number,
-          )
+          (github.context.eventName === "issues"
+            ? github.context.payload.issue!["created_at"]
+            : github.context.payload.comment!["created_at"]) as number,
+        )
         : new Date();
 
     if (competitionStartAt != null && requestedDate < new Date(competitionStartAt)) {
@@ -291,12 +291,8 @@ const command = defineCommand({
       }
 
       {
-        const totalScore = round(
-          sum(results.map(({ scoreX100 }) => scoreX100)) / 100,
-          2
-        )
-
-        const totalMaxScore = sum(results.map(({ target }) => target.maxScore));
+        const totalScore = _.round(_.sum(_.map(results, ({ scoreX100 }) => scoreX100)) / 100, 2);
+        const totalMaxScore = _.sum(_.map(results, ({ target }) => target.maxScore));
 
         const { rank } = await sendScoreToDashboard(totalScore);
 
