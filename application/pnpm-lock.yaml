@@ -36,18 +36,9 @@ importers:
       bayesian-bm25:
         specifier: 0.4.0
         version: 0.4.0
-      bluebird:
-        specifier: 3.7.2
-        version: 3.7.2
-      buffer:
-        specifier: 6.0.3
-        version: 6.0.3
       classnames:
         specifier: 2.5.1
         version: 2.5.1
-      core-js:
-        specifier: 3.45.1
-        version: 3.45.1
       date-fns:
         specifier: 4.1.0
         version: 4.1.0
@@ -75,9 +66,6 @@ importers:
       omggif:
         specifier: 1.0.10
         version: 1.0.10
-      pako:
-        specifier: 2.1.0
-        version: 2.1.0
       piexifjs:
         specifier: 1.0.6
         version: 1.0.6
@@ -105,9 +93,6 @@ importers:
       redux-form:
         specifier: 8.3.10
         version: 8.3.10(react-redux@9.2.0(@types/react@19.2.2)(react@19.2.0)(redux@5.0.1))(react@19.2.0)(redux@5.0.1)
-      regenerator-runtime:
-        specifier: 0.14.1
-        version: 0.14.1
       rehype-katex:
         specifier: 7.0.1
         version: 7.0.1
@@ -117,9 +102,6 @@ importers:
       remark-math:
         specifier: 6.0.0
         version: 6.0.0
-      standardized-audio-context:
-        specifier: 25.3.77
-        version: 25.3.77
       tiny-invariant:
         specifier: 1.3.3
         version: 1.3.3
@@ -142,9 +124,6 @@ importers:
       '@tsconfig/strictest':
         specifier: 2.0.8
         version: 2.0.8
-      '@types/bluebird':
-        specifier: 3.5.42
-        version: 3.5.42
       '@types/date-fns':
         specifier: 2.6.3
         version: 2.6.3
@@ -163,9 +142,6 @@ importers:
       '@types/omggif':
         specifier: 1.0.5
         version: 1.0.5
-      '@types/pako':
-        specifier: 2.0.4
-        version: 2.0.4
       '@types/piexifjs':
         specifier: 1.0.0
         version: 1.0.0
@@ -265,6 +241,9 @@ importers:
       body-parser:
         specifier: 2.2.0
         version: 2.2.0
+      compression:
+        specifier: 1.8.1
+        version: 1.8.1
       connect-history-api-fallback:
         specifier: 2.0.0
         version: 2.0.0
@@ -329,6 +308,9 @@ importers:
       '@types/body-parser':
         specifier: 1.19.6
         version: 1.19.6
+      '@types/compression':
+        specifier: 1.8.1
+        version: 1.8.1
       '@types/connect-history-api-fallback':
         specifier: 1.5.4
         version: 1.5.4
@@ -1922,6 +1904,9 @@ packages:
   '@types/bonjour@3.5.13':
     resolution: {integrity: sha512-z9fJ5Im06zvUL548KvYNecEVlA7cVDkGUi6kZusb04mpyEFKCIZJvloCcmpmLaIahDpOQGHaHmG6imtPMmPXGQ==}
 
+  '@types/compression@1.8.1':
+    resolution: {integrity: sha512-kCFuWS0ebDbmxs0AXYn6e2r2nrGAb5KwQhknjSPSPgJcGd8+HVSILlUyFhGqML2gk39HcG7D1ydW9/qpYkN00Q==}
+
   '@types/connect-history-api-fallback@1.5.4':
     resolution: {integrity: sha512-n6Cr2xS1h4uAulPRdlw6Jl6s1oG8KrVilPN2yUITEs+K48EzMJJ3W1xy8K5eWuFvjp3R74AOIGSmp2UfBJ8HFw==}
 
@@ -2015,9 +2000,6 @@ packages:
 
   '@types/omggif@1.0.5':
     resolution: {integrity: sha512-gDQJflz1rOgEcUXkMAl80bDGN46f5mp8GbcM5dyvq+zsFV6YRBRtmNxlJJ5mjY77T7BRkRFzdIBVmK90QYhCxA==}
-
-  '@types/pako@2.0.4':
-    resolution: {integrity: sha512-VWDCbrLeVXJM9fihYodcLiIv0ku+AlOa/TQ1SvYOaBuyrSKgEcro95LJyIsJ4vSo6BXIxOKxiJAat04CmST9Fw==}
 
   '@types/piexifjs@1.0.0':
     resolution: {integrity: sha512-PPiGeCkmkZQgYjvqtjD3kp4OkbCox2vEFVuK4DaLVOIazJLAXk+/ujbizkIPH5CN4AnN9Clo5ckzUlaj3+SzCA==}
@@ -2256,10 +2238,6 @@ packages:
   async@2.6.4:
     resolution: {integrity: sha512-mzo5dfJYwAn29PeiJ0zvwTo04zj8HDJj0Mn8TD7sno7q12prdbnasKJHhkm2c1LgrhlJ0teaea8860oxi51mGA==}
 
-  automation-events@7.1.13:
-    resolution: {integrity: sha512-1Hay5TQPzxsskSqPTH3YXyzE9Iirz82zZDse2vr3+kOR7Sc7om17qIEPsESchlNX0EgKxANwR40i2g/O3GM1Tw==}
-    engines: {node: '>=18.2.0'}
-
   autoprefixer@10.4.21:
     resolution: {integrity: sha512-O+A6LWV5LDHSJD3LjHYoNi4VLsj/Whi7k6zG12xTYaU4cQ8oxQGckXNX8cRHK5yOZ/ppVHe0ZBXGzSV9jXdVbQ==}
     engines: {node: ^10 || ^12 || >=14}
@@ -2365,9 +2343,6 @@ packages:
 
   buffer@5.7.1:
     resolution: {integrity: sha512-EHcyIPBQ4BSGlvjB16k5KgAJ27CIsHY/2JBmCRReo48y9rQ3MaUzWX3KVlBa4U7MyX02HdVj0K7C3WaB3ju7FQ==}
-
-  buffer@6.0.3:
-    resolution: {integrity: sha512-FTiCpNxtwiZZHEZbcbTIcZjERVICn9yq/pDFkTl95/AxzD1naBctN7YO68riM/gLSDY7sdrMby8hofADYuuqOA==}
 
   bundle-name@4.1.0:
     resolution: {integrity: sha512-tjwM5exMg6BGRI+kNmTntNsvdZS1X8BFYS6tnJ2hdH0kVxM6/eVZ2xy+FqStSWvYmtfFMDLIxurorHwDKfDz5Q==}
@@ -2540,9 +2515,6 @@ packages:
 
   core-js-compat@3.45.1:
     resolution: {integrity: sha512-tqTt5T4PzsMIZ430XGviK4vzYSoeNJ6CXODi6c/voxOT6IZqBht5/EKaSNnYiEjjRYxjVz7DQIsOsY0XNi8PIA==}
-
-  core-js@3.45.1:
-    resolution: {integrity: sha512-L4NPsJlCfZsPeXukyzHFlg/i7IIVwHSItR0wg0FLNqYClJ4MQYTYLbC7EkjKYRLZF2iof2MUgN0EGy7MdQFChg==}
 
   core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
@@ -3983,9 +3955,6 @@ packages:
     resolution: {integrity: sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==}
     engines: {node: '>=6'}
 
-  pako@2.1.0:
-    resolution: {integrity: sha512-w+eufiZ1WuJYgPXbV/PO3NCMEc3xqylkKHzp8bxp1uW4qaSNQUkwmLLEc3kKsfz8lpV1F8Ht3U1Cm+9Srog2ug==}
-
   param-case@3.0.4:
     resolution: {integrity: sha512-RXlj7zCYokReqWpOPH9oYivUzLYZ5vAPIfEmCTNViosC78F8F0H9y7T7gG2M39ymgutxF5gcFEsyZQSph9Bp3A==}
 
@@ -4450,9 +4419,6 @@ packages:
   regenerate@1.4.2:
     resolution: {integrity: sha512-zrceR/XhGYU/d/opr2EKO7aRHUeiBI8qjtfHqADTwZd6Szfy16la6kqD0MIUs5z5hx6AaKa+PixpPrR289+I0A==}
 
-  regenerator-runtime@0.14.1:
-    resolution: {integrity: sha512-dYnhHh0nJoMfnkZs6GmmhFknAGRrLznOu5nc9ML+EJxGvrx6H7teuevqVqCuPcPK//3eDrrjQhehXVx9cnkGdw==}
-
   regexpu-core@6.4.0:
     resolution: {integrity: sha512-0ghuzq67LI9bLXpOX/ISfve/Mq33a4aFRzoQYhnnok1JOFpmE/A2TBGkNVenOGEeSBCjIiWcc6MVOG5HEQv0sA==}
     engines: {node: '>=4'}
@@ -4738,9 +4704,6 @@ packages:
   ssri@8.0.1:
     resolution: {integrity: sha512-97qShzy1AiyxvPNIkLWoGua7xoQzzPjQ0HAH4B0rWKo7SZ6USuPcrUiAFrws0UH8RrbWmgq3LMTObhPIHbbBeQ==}
     engines: {node: '>= 8'}
-
-  standardized-audio-context@25.3.77:
-    resolution: {integrity: sha512-Ki9zNz6pKcC5Pi+QPjPyVsD9GwJIJWgryji0XL9cAJXMGyn+dPOf6Qik1AHei0+UNVcc4BOCa0hWLBzlwqsW/A==}
 
   statuses@1.5.0:
     resolution: {integrity: sha512-OpZ3zP+jT1PI7I8nemJX4AKmAX070ZkYPVWV/AaKTJl+tXCTGyVdC1a4SL8RUQYEwk/f34ZX8UTykN68FwrqAA==}
@@ -6667,6 +6630,11 @@ snapshots:
     dependencies:
       '@types/node': 22.18.8
 
+  '@types/compression@1.8.1':
+    dependencies:
+      '@types/express': 5.0.3
+      '@types/node': 22.18.8
+
   '@types/connect-history-api-fallback@1.5.4':
     dependencies:
       '@types/express-serve-static-core': 5.1.0
@@ -6784,8 +6752,6 @@ snapshots:
       undici-types: 6.21.0
 
   '@types/omggif@1.0.5': {}
-
-  '@types/pako@2.0.4': {}
 
   '@types/piexifjs@1.0.0': {}
 
@@ -7052,11 +7018,6 @@ snapshots:
     dependencies:
       lodash: 4.17.21
 
-  automation-events@7.1.13:
-    dependencies:
-      '@babel/runtime': 7.28.4
-      tslib: 2.8.1
-
   autoprefixer@10.4.21(postcss@8.5.6):
     dependencies:
       browserslist: 4.26.3
@@ -7199,11 +7160,6 @@ snapshots:
   buffer-from@1.1.2: {}
 
   buffer@5.7.1:
-    dependencies:
-      base64-js: 1.5.1
-      ieee754: 1.2.1
-
-  buffer@6.0.3:
     dependencies:
       base64-js: 1.5.1
       ieee754: 1.2.1
@@ -7384,8 +7340,6 @@ snapshots:
   core-js-compat@3.45.1:
     dependencies:
       browserslist: 4.26.3
-
-  core-js@3.45.1: {}
 
   core-util-is@1.0.3: {}
 
@@ -9133,8 +9087,6 @@ snapshots:
 
   p-try@2.2.0: {}
 
-  pako@2.1.0: {}
-
   param-case@3.0.4:
     dependencies:
       dot-case: 3.0.4
@@ -9713,8 +9665,6 @@ snapshots:
 
   regenerate@1.4.2: {}
 
-  regenerator-runtime@0.14.1: {}
-
   regexpu-core@6.4.0:
     dependencies:
       regenerate: 1.4.2
@@ -10127,12 +10077,6 @@ snapshots:
     dependencies:
       minipass: 3.3.6
     optional: true
-
-  standardized-audio-context@25.3.77:
-    dependencies:
-      '@babel/runtime': 7.28.4
-      automation-events: 7.1.13
-      tslib: 2.8.1
 
   statuses@1.5.0: {}
 
