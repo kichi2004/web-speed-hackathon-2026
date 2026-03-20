@@ -24,6 +24,11 @@ app.use((_req, res, next) => {
     Connection: "close",
   });
   return next();
+app.use("/api/v1", (req, res, next) => {
+  if (req.method === "GET") {
+    res.setHeader("Cache-Control", "public, max-age=5, stale-while-revalidate=60");
+  }
+  next();
 });
 
 app.use("/api/v1", apiRouter);
