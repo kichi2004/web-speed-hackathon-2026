@@ -22,7 +22,7 @@ app.use(compression({
 const isDev = process.env["NODE_ENV"] === "development";
 app.use(
   morgan(isDev ? "dev" : "combined", {
-    skip: (_, res) => (isDev ? false : res.statusCode < 400),
+    // skip: (_, res) => (isDev ? false : res.statusCode < 400),
   }),
 );
 app.use(sessionMiddleware);
