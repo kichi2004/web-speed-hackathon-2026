@@ -8,8 +8,8 @@ import { v4 as uuidv4 } from "uuid";
 
 import { UPLOAD_PATH } from "@web-speed-hackathon-2026/server/src/paths";
 
-// クライアントはJPGで送信、サーバーは .avif 拡張子で保存（getImagePathとの整合）
-const SAVE_EXTENSION = "avif";
+// クライアントはJPGで送信、サーバーは .webp 拡張子で保存（getImagePathとの整合）
+const SAVE_EXTENSION = "webp";
 
 export const imageRouter = Router();
 

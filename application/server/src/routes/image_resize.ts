@@ -42,7 +42,7 @@ export async function prewarmImageCache() {
   const profileDir = path.resolve(PUBLIC_PATH, "images", "profiles");
   let files: string[];
   try {
-    files = (await fs.readdir(profileDir)).filter((f) => f.endsWith(".avif"));
+    files = (await fs.readdir(profileDir)).filter((f) => f.endsWith(".webp"));
   } catch {
     return;
   }
@@ -58,7 +58,7 @@ export async function prewarmImageCache() {
         try {
           const buf = await sharp(filePath)
             .resize({ width, withoutEnlargement: true })
-            .avif({ quality: 50 })
+            .webp({ quality: 50 })
             .toBuffer();
           cacheSet(cacheKey, buf);
         } catch {
@@ -89,7 +89,7 @@ imageResizeRouter.get("/images/{*path}", async (req, res, next) => {
 
   const cached = cache.get(cacheKey);
   if (cached) {
-    res.setHeader("Content-Type", "image/avif");
+    res.setHeader("Content-Type", "image/webp");
     res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
     return res.send(cached);
   }
@@ -110,12 +110,12 @@ imageResizeRouter.get("/images/{*path}", async (req, res, next) => {
   try {
     const resized = await sharp(filePath)
       .resize({ width, withoutEnlargement: true })
-      .avif({ quality: 50 })
+      .webp({ quality: 50 })
       .toBuffer();
 
     cacheSet(cacheKey, resized);
 
-    res.setHeader("Content-Type", "image/avif");
+    res.setHeader("Content-Type", "image/webp");
     res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
     return res.send(resized);
   } catch {

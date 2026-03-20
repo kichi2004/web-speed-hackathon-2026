@@ -1,5 +1,5 @@
 export function getImagePath(imageId: string, width?: number): string {
-  const base = `/images/${imageId}.avif`;
+  const base = `/images/${imageId}.webp`;
   return width ? `${base}?w=${width}` : base;
 }
 
@@ -12,6 +12,6 @@ export function getSoundPath(soundId: string): string {
 }
 
 export function getProfileImagePath(profileImageId: string, width?: number): string {
-  const base = `/images/profiles/${profileImageId}.avif`;
+  const base = `/images/profiles/${profileImageId}.webp`;
   return width ? `${base}?w=${width}` : base;
 }
