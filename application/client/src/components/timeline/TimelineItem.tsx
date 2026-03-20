@@ -23,11 +23,14 @@ const isClickedAnchorOrButton = (target: EventTarget | null, currentTarget: Elem
   return false;
 };
 
+const EAGER_LOAD_COUNT = 5;
+
 interface Props {
   post: Models.Post;
+  index: number;
 }
 
-export const TimelineItem = ({ post }: Props) => {
+export const TimelineItem = ({ post, index }: Props) => {
   const navigate = useNavigate();
 
   /**
@@ -53,7 +56,7 @@ export const TimelineItem = ({ post }: Props) => {
           >
             <img
               alt={post.user.profileImage.alt}
-              loading="lazy"
+              loading={index < EAGER_LOAD_COUNT ? "eager" : "lazy"}
               src={getProfileImagePath(post.user.profileImage.id)}
             />
           </Link>
@@ -84,7 +87,7 @@ export const TimelineItem = ({ post }: Props) => {
           </div>
           {post.images?.length > 0 ? (
             <div className="relative mt-2 w-full">
-              <ImageArea images={post.images} />
+              <ImageArea images={post.images} loading={index < EAGER_LOAD_COUNT ? "eager" : "lazy"} />
             </div>
           ) : null}
           {post.movie ? (

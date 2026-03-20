@@ -8,6 +8,7 @@ import { fetchJSON } from "@web-speed-hackathon-2026/client/src/utils/fetchers";
 
 interface Props {
   src: string;
+  loading?: "lazy" | "eager";
 }
 
 let altTextsCache: Record<string, string> | null = null;
@@ -22,7 +23,7 @@ async function fetchAltTexts(url: string): Promise<Record<string, string>> {
 /**
  * アスペクト比を維持したまま、要素のコンテンツボックス全体を埋めるように画像を拡大縮小します
  */
-export const CoveredImage = ({ src }: Props) => {
+export const CoveredImage = ({ src, loading = "lazy" }: Props) => {
   const dialogId = useId();
   const handleDialogClick = useCallback((ev: MouseEvent<HTMLDialogElement>) => {
     ev.stopPropagation();
@@ -74,7 +75,7 @@ export const CoveredImage = ({ src }: Props) => {
             "w-full h-auto": containerRatio <= imageRatio,
           },
         )}
-        loading="lazy"
+        loading={loading}
         src={src}
       />
 
