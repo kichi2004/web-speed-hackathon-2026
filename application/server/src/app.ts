@@ -11,7 +11,13 @@ import { sessionMiddleware } from '@web-speed-hackathon-2026/server/src/session'
 export const app = Express();
 
 app.set("trust proxy", true);
-app.use(compression());
+app.use(compression({
+  filter: (req, res) => {
+    const contentType = res.getHeader('Content-Type')?.toString() ?? '';
+    if (contentType.startsWith('image/')) return false;
+    return compression.filter(req, res);
+  }
+}));
 
 const isDev = process.env["NODE_ENV"] === "development";
 app.use(
