@@ -7,7 +7,7 @@ import sharp from "sharp";
 import { PUBLIC_PATH, UPLOAD_PATH } from "@web-speed-hackathon-2026/server/src/paths";
 
 sharp.cache(false);
-sharp.concurrency(1);
+sharp.concurrency(3);
 
 export const imageResizeRouter = Router();
 
@@ -21,7 +21,7 @@ function clampWidth(w: number): number {
 }
 
 // In-memory cache for resized images (LRU-like, capped at 100 entries)
-const MAX_CACHE_SIZE = 100;
+const MAX_CACHE_SIZE = 500;
 const cache = new Map<string, Buffer>();
 
 function cacheSet(key: string, value: Buffer) {
