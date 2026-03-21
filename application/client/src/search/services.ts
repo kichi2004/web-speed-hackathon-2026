@@ -9,8 +9,8 @@ export const sanitizeSearchText = (input: string): string => {
   return text;
 };
 
-const sincePattern = /since:\d{4}-\d{2}-\d{2}$/;
-const untilPattern = /until:\d{4}-\d{2}-\d{2}$/;
+const sincePattern = /since:(\d{4}-\d{2}-\d{2})$/;
+const untilPattern = /until:(\d{4}-\d{2}-\d{2})$/;
 
 
 export const parseSearchQuery = (query: string) => {
