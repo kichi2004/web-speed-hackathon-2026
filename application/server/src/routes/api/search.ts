@@ -39,12 +39,15 @@ searchRouter.get("/search", async (req, res) => {
   // テキスト検索条件
   const textWhere = searchTerm ? { text: { [Op.like]: searchTerm } } : {};
 
+  const maxFetch = (offset || 0) + (limit || 50);
+
   const postsByText = await Post.findAll({
     ...POST_FULL_SCOPE,
     where: {
       ...textWhere,
       ...dateWhere,
     },
+    limit: maxFetch,
   });
 
   // ユーザー名/名前での検索（キーワードがある場合のみ）
@@ -69,6 +72,7 @@ searchRouter.get("/search", async (req, res) => {
         { association: "sound" },
       ],
       where: dateWhere,
+      limit: maxFetch,
     });
   }
 
