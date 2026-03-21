@@ -41,8 +41,6 @@ searchRouter.get("/search", async (req, res) => {
 
   const postsByText = await Post.findAll({
     ...POST_FULL_SCOPE,
-    limit,
-    offset,
     where: {
       ...textWhere,
       ...dateWhere,
@@ -70,8 +68,6 @@ searchRouter.get("/search", async (req, res) => {
         { association: "movie" },
         { association: "sound" },
       ],
-      limit,
-      offset,
       where: dateWhere,
     });
   }
