@@ -24,6 +24,7 @@ const isClickedAnchorOrButton = (target: EventTarget | null, currentTarget: Elem
 };
 
 const EAGER_LOAD_COUNT = 5;
+const FETCH_PRIORITY_COUNT = 3;
 
 interface Props {
   post: Models.Post;
@@ -56,6 +57,7 @@ export const TimelineItem = ({ post, index }: Props) => {
           >
             <img
               alt={post.user.profileImage.alt}
+              fetchPriority={index < FETCH_PRIORITY_COUNT ? "high" : undefined}
               height={96}
               loading={index < EAGER_LOAD_COUNT ? "eager" : "lazy"}
               src={getProfileImagePath(post.user.profileImage.id, 96)}
@@ -89,7 +91,7 @@ export const TimelineItem = ({ post, index }: Props) => {
           </div>
           {post.images?.length > 0 ? (
             <div className="relative mt-2 w-full">
-              <ImageArea images={post.images} loading={index < EAGER_LOAD_COUNT ? "eager" : "lazy"} />
+              <ImageArea images={post.images} loading={index < EAGER_LOAD_COUNT ? "eager" : "lazy"} fetchPriority={index < FETCH_PRIORITY_COUNT ? "high" : undefined} />
             </div>
           ) : null}
           {post.movie ? (

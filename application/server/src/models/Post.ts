@@ -22,7 +22,6 @@ export const POST_FULL_SCOPE: FindOptions = {
   include: [
     {
       association: "user",
-      attributes: { exclude: ["profileImageId"] },
       include: [{ association: "profileImage" }],
     },
     {

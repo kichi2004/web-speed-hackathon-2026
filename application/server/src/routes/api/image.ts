@@ -34,5 +34,9 @@ imageRouter.post("/images", async (req, res) => {
   const webpBuffer = await sharp(req.body).webp({ quality: 80 }).toBuffer();
   await fs.writeFile(filePath, webpBuffer);
 
+  // 元のJPGも保存（E2Eテスト等で元フォーマットを参照するケースに対応）
+  const jpgPath = path.resolve(UPLOAD_PATH, `./images/${imageId}.jpg`);
+  await fs.writeFile(jpgPath, req.body);
+
   return res.status(200).type("application/json").send({ id: imageId });
 });
