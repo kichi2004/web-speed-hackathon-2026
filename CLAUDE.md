@@ -31,6 +31,23 @@ mise.toml
 4. **Always preserve visual appearance** — pixel-level regressions = disqualification
 5. **Check regulation.md before any major change** — when in doubt, don't change it
 
+## Verification
+
+### Frontend changes
+- After any frontend change, run the relevant E2E scoring test to verify no regressions.
+- Build and start the server first, then run:
+```bash
+  cd scoring-tool && pnpm start --applicationUrl http://localhost:3000 --targetName [target]
+```
+- Available targets and test details are defined in `scoring-tool/src/calculate.ts` (lines 50-152). Read this file to understand what each target tests.
+
+### Backend changes
+- After any backend/API change, verify the response manually:
+```bash
+  http http://localhost:3000/api/...
+```
+- Use `curl` as an alternative if `httpie` is not available.
+
 ## Operator Style
 
 - The human operator has **ISUCON experience** (backend optimization) but is **not a frontend expert**
